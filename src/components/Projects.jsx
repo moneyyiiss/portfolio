@@ -31,21 +31,21 @@ function StatusBadge({ status }) {
   return null;
 }
 
-function BrowserPreview({ project, maxHeight = 420 }) {
+function BrowserPreview({ project, height = 420 }) {
   return (
     <div style={{ background: "#171a1c" }}>
       <div className="flex items-center gap-1.5 border-b px-4 py-2.5" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
         <span className="h-2.5 w-2.5 rounded-full" style={{ background: "rgba(255,255,255,0.18)" }} />
         <span className="h-2.5 w-2.5 rounded-full" style={{ background: "rgba(255,255,255,0.18)" }} />
         <span className="h-2.5 w-2.5 rounded-full" style={{ background: "rgba(255,255,255,0.18)" }} />
-        <span className="mono ml-3 text-[11px]" style={{ color: "rgba(255,255,255,0.4)" }}>
+        <span className="mono ml-3 truncate text-[11px]" style={{ color: "rgba(255,255,255,0.4)" }}>
           {project.demo ? hostFromUrl(project.demo) : project.name}
         </span>
       </div>
       <img
         src={project.image}
         alt={`${project.name} screenshot`}
-        style={{ maxHeight }}
+        style={{ height, minHeight: height }}
         className="w-full object-cover object-top"
       />
     </div>
@@ -94,6 +94,11 @@ function FeaturedProject({ project, onOpen }) {
           <p className="mt-4 text-sm sm:text-base" style={{ color: "var(--ink-soft)" }}>
             {project.description}
           </p>
+          {project.languages && (
+            <p className="mono mt-3 text-xs" style={{ color: "var(--ink-faint)" }}>
+              Site language: {project.languages.join(", ")}
+            </p>
+          )}
           <div className="mt-5 flex flex-wrap gap-2">
             {project.stack.map((s) => (
               <span
@@ -162,7 +167,7 @@ export default function Projects() {
                   className="flex h-full w-full flex-col items-start overflow-hidden rounded-xl text-left transition-transform hover:-translate-y-0.5"
                   style={{ background: "var(--surface)", border: "1px solid var(--line-soft)" }}
                 >
-                  {p.image && <BrowserPreview project={p} maxHeight={160} />}
+                  {p.image && <BrowserPreview project={p} height={180} />}
                   <div className="flex w-full flex-1 flex-col items-start gap-3 p-6">
                     <div className="flex w-full items-center justify-between gap-2">
                       <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
@@ -174,6 +179,11 @@ export default function Projects() {
                     <p className="line-clamp-3 text-sm" style={{ color: "var(--ink-soft)" }}>
                       {p.description}
                     </p>
+                    {p.languages && (
+                      <p className="mono text-[10.5px]" style={{ color: "var(--ink-faint)" }}>
+                        Site language: {p.languages.join(", ")}
+                      </p>
+                    )}
                     <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
                       {p.stack.slice(0, 3).map((s) => (
                         <span

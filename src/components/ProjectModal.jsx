@@ -88,7 +88,12 @@ export default function ProjectModal({ project, onClose }) {
                 {project.demo ? hostFromUrl(project.demo) : project.name}
               </span>
             </div>
-            <img src={project.image} alt={`${project.name} screenshot`} className="max-h-[280px] w-full object-cover object-top" />
+            <img
+              src={project.image}
+              alt={`${project.name} screenshot`}
+              style={{ height: 240, minHeight: 240 }}
+              className="w-full object-cover object-top"
+            />
           </div>
         ) : (
           <div
@@ -113,6 +118,12 @@ export default function ProjectModal({ project, onClose }) {
         <p className="mt-6 text-sm" style={{ color: "var(--ink-soft)" }}>
           {project.description}
         </p>
+
+        {project.languages && (
+          <p className="mono mt-3 text-xs" style={{ color: "var(--ink-faint)" }}>
+            Site language: {project.languages.join(", ")}
+          </p>
+        )}
 
         <ul className="mt-5 flex flex-col gap-2">
           {project.features.map((f) => (

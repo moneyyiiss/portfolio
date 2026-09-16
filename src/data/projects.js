@@ -3,8 +3,31 @@ import autoserviceWennesImg from "../assets/projects/autoservice-wennes.webp";
 import minibaggerImg from "../assets/projects/minibagger-brinkmann.webp";
 import musikvereinImg from "../assets/projects/musikverein-heede.webp";
 import sanierungskostenplanImg from "../assets/projects/sanierungskostenplan.webp";
+import maRoomImg from "../assets/projects/ma-room.webp";
+import kanneHunfeldImg from "../assets/projects/kanne-hunfeld.webp";
 
 export const projects = [
+  {
+    name: "MaRoom",
+    tagline: "Full site restructure — furnished housing",
+    status: "live",
+    description:
+      "MaRoom offers furnished apartments for professionals and corporate clients across Germany. I fully restructured the existing site — information architecture, page flow, and the availability-check booking path — rather than a surface redesign.",
+    features: [
+      "Full restructure of site architecture and page flow, not a reskin",
+      "Availability-check booking flow rebuilt for clarity",
+      "Bilingual site: German and English",
+    ],
+    stack: ["Web Development", "Bilingual (DE/EN)"],
+    languages: ["German", "English"],
+    repo: null,
+    demo: "https://ma-room.de/",
+    image: maRoomImg,
+    snippet: [
+      { in: "$ restructure ma-room.de --full" },
+      { out: "IA rebuilt · booking flow simplified" },
+    ],
+  },
   {
     name: "Sanierungskostenplan.de",
     tagline: "Renovation cost planning service",
@@ -17,6 +40,7 @@ export const projects = [
       "Built and shipped to the client's own domain",
     ],
     stack: ["Web Development", "German localization"],
+    languages: ["German"],
     repo: null,
     demo: "https://sanierungskostenplan.de/",
     image: sanierungskostenplanImg,
@@ -37,12 +61,34 @@ export const projects = [
       "Backend/query-level tuning done without a theme or plugin rewrite",
     ],
     stack: ["WordPress", "WooCommerce", "Performance", "PHP"],
+    languages: ["German"],
     repo: null,
     demo: "https://dein-videofon.de/",
     image: deinVideofonImg,
     snippet: [
       { in: "$ optimize dein-videofon.de --wordpress" },
       { out: "assets minified · queries cached · TTFB reduced" },
+    ],
+  },
+  {
+    name: "Landhaus Kanne-Hunfeld",
+    tagline: "WordPress site for an event venue & restaurant",
+    status: "live",
+    description:
+      "A 200-year-old family-run manor house in Heede, Germany, operating as an event venue and restaurant with three distinct spaces for weddings, parties, and conferences. Built the WordPress site around venue browsing, the menu, and table reservations.",
+    features: [
+      "Three venue spaces presented with dedicated pages",
+      "Table reservation and event inquiry flow",
+      "Regional-cuisine menu section, German-language build",
+    ],
+    stack: ["WordPress", "Responsive Design"],
+    languages: ["German"],
+    repo: null,
+    demo: "https://kanne-hunfeld.de/",
+    image: kanneHunfeldImg,
+    snippet: [
+      { in: "$ deploy kanne-hunfeld.de --prod" },
+      { out: "live · DNS propagated" },
     ],
   },
   {
@@ -57,6 +103,7 @@ export const projects = [
       "Fully responsive, German-language WordPress build",
     ],
     stack: ["WordPress", "Responsive Design"],
+    languages: ["German"],
     repo: null,
     demo: "https://autoservice-wennes2.zerix.online/",
     image: autoserviceWennesImg,
@@ -77,6 +124,7 @@ export const projects = [
       "German-language WordPress build, staging environment",
     ],
     stack: ["WordPress", "Responsive Design"],
+    languages: ["German"],
     repo: null,
     demo: "https://minibagger.zerix.online/",
     image: minibaggerImg,
@@ -97,6 +145,7 @@ export const projects = [
       "German-language WordPress build, staging environment",
     ],
     stack: ["WordPress", "Responsive Design"],
+    languages: ["German"],
     repo: null,
     demo: "https://musikvereinheede.zerix.online/",
     image: musikvereinImg,
