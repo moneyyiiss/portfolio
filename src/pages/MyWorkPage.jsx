@@ -19,11 +19,7 @@ export default function MyWorkPage() {
           </h1>
           <p className="mt-6 max-w-[56ch] text-lg" style={{ color: "var(--ink-soft)" }}>
             Real work I've shipped for clients, plus 70+ personal repos on
-            GitHub. Projects marked{" "}
-            <span className="mono" style={{ color: "var(--accent)" }}>
-              ● Live
-            </span>{" "}
-            are running in production right now — click through to see them.
+            GitHub — click through any project to see the details.
           </p>
         </div>
       </section>

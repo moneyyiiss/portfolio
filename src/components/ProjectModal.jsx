@@ -8,26 +8,6 @@ function hostFromUrl(url) {
   }
 }
 
-function StatusBadge({ status }) {
-  if (status === "live") {
-    return (
-      <span className="mono flex items-center gap-1.5 text-[10.5px]" style={{ color: "var(--accent)" }}>
-        <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} />
-        Live
-      </span>
-    );
-  }
-  if (status === "staging") {
-    return (
-      <span className="mono flex items-center gap-1.5 text-[10.5px]" style={{ color: "var(--ink-faint)" }}>
-        <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--ink-faint)" }} />
-        Staging
-      </span>
-    );
-  }
-  return null;
-}
-
 export default function ProjectModal({ project, onClose }) {
   const closeRef = useRef(null);
 
@@ -57,12 +37,9 @@ export default function ProjectModal({ project, onClose }) {
       >
         <div className="flex items-start justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2">
-              <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
-                {project.tagline}
-              </p>
-              <StatusBadge status={project.status} />
-            </div>
+            <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
+              {project.tagline}
+            </p>
             <h3 id="project-modal-title" className="mt-1 text-2xl font-semibold">
               {project.name}
             </h3>
@@ -154,7 +131,7 @@ export default function ProjectModal({ project, onClose }) {
           )}
           {project.demo && (
             <a href={project.demo} target="_blank" rel="noreferrer" style={{ color: "var(--accent)" }} className="underline">
-              {project.status === "staging" ? "Preview" : "Visit site"}
+              Visit site
             </a>
           )}
         </div>

@@ -11,26 +11,6 @@ function hostFromUrl(url) {
   }
 }
 
-function StatusBadge({ status }) {
-  if (status === "live") {
-    return (
-      <span className="mono flex items-center gap-1.5 text-[10.5px]" style={{ color: "var(--accent)" }}>
-        <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} />
-        Live
-      </span>
-    );
-  }
-  if (status === "staging") {
-    return (
-      <span className="mono flex items-center gap-1.5 text-[10.5px]" style={{ color: "var(--ink-faint)" }}>
-        <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--ink-faint)" }} />
-        Staging
-      </span>
-    );
-  }
-  return null;
-}
-
 function BrowserPreview({ project, height = 420 }) {
   return (
     <div style={{ background: "#171a1c" }}>
@@ -84,12 +64,9 @@ function FeaturedProject({ project, onOpen }) {
       {project.image && <BrowserPreview project={project} />}
       <div className="grid grid-cols-1 gap-8 p-8 sm:grid-cols-[1.1fr_0.9fr] sm:gap-12 sm:p-12">
         <div>
-          <div className="flex items-center gap-2">
-            <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
-              {project.tagline}
-            </p>
-            <StatusBadge status={project.status} />
-          </div>
+          <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
+            {project.tagline}
+          </p>
           <h3 className="mt-2 text-2xl font-semibold sm:text-3xl">{project.name}</h3>
           <p className="mt-4 text-sm sm:text-base" style={{ color: "var(--ink-soft)" }}>
             {project.description}
@@ -116,7 +93,7 @@ function FeaturedProject({ project, onOpen }) {
             </button>
             {project.demo && (
               <a href={project.demo} target="_blank" rel="noreferrer" className="underline">
-                {project.status === "staging" ? "Preview" : "Visit site"}
+                Visit site
               </a>
             )}
           </div>
@@ -140,7 +117,7 @@ export default function Projects() {
               Selected work
             </p>
             <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
-              {projects.length} client project{projects.length === 1 ? "" : "s"}, out of 70+ repos
+              Sites I've built and shipped
             </h2>
           </div>
           <a
@@ -169,12 +146,9 @@ export default function Projects() {
                 >
                   {p.image && <BrowserPreview project={p} height={180} />}
                   <div className="flex w-full flex-1 flex-col items-start gap-3 p-6">
-                    <div className="flex w-full items-center justify-between gap-2">
-                      <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
-                        {p.tagline}
-                      </p>
-                      <StatusBadge status={p.status} />
-                    </div>
+                    <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
+                      {p.tagline}
+                    </p>
                     <h3 className="text-lg font-semibold">{p.name}</h3>
                     <p className="line-clamp-3 text-sm" style={{ color: "var(--ink-soft)" }}>
                       {p.description}
