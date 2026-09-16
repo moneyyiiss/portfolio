@@ -4,7 +4,7 @@ import { stats } from "../data/stats";
 export default function Stats() {
   return (
     <section className="border-y px-6 py-10" style={{ borderColor: "var(--line-soft)", background: "var(--bg-alt)" }}>
-      <Reveal as="div" className="mx-auto grid max-w-6xl grid-cols-2 gap-8 sm:grid-cols-4">
+      <Reveal as="div" className="mx-auto grid max-w-6xl grid-cols-3 gap-8">
         {stats.map((s) => (
           <div key={s.label}>
             <p className="tabular text-3xl font-semibold" style={{ fontFamily: "Bricolage Grotesque", color: "var(--accent)" }}>

@@ -99,12 +99,14 @@ export default function ProjectModal({ project, onClose }) {
         </div>
 
         <div className="mt-7 flex gap-5 border-t pt-6 text-sm font-medium" style={{ borderColor: "var(--line-soft)" }}>
-          <a href={project.repo} target="_blank" rel="noreferrer" className="underline">
-            View code
-          </a>
+          {project.repo && (
+            <a href={project.repo} target="_blank" rel="noreferrer" className="underline">
+              View code
+            </a>
+          )}
           {project.demo && (
             <a href={project.demo} target="_blank" rel="noreferrer" style={{ color: "var(--accent)" }} className="underline">
-              Live demo
+              Visit site
             </a>
           )}
         </div>

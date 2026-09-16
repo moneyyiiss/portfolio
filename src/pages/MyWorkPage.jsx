@@ -18,12 +18,12 @@ export default function MyWorkPage() {
             My Work
           </h1>
           <p className="mt-6 max-w-[56ch] text-lg" style={{ color: "var(--ink-soft)" }}>
-            Real projects, pulled straight from my GitHub — click any card
-            for the full details. Projects marked{" "}
+            Real work I've shipped for clients, plus 70+ personal repos on
+            GitHub. Projects marked{" "}
             <span className="mono" style={{ color: "var(--accent)" }}>
               ● Live
             </span>{" "}
-            have a working deployment you can open right now.
+            are running in production right now — click through to see them.
           </p>
         </div>
       </section>
