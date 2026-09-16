@@ -1,48 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
 
 :root {
-  --bg: #f4f6f5;
-  --surface: #ffffff;
-  --surface-2: #e8ebe9;
-  --ink: #10171a;
-  --ink-soft: #4b5b58;
-  --ink-faint: #7c8c89;
-  --accent: #c97a2e;
-  --accent-ink: #7a4013;
-  --accent-tint: #f4e4cd;
-  --border: rgba(16, 23, 26, 0.12);
-  --border-soft: rgba(16, 23, 26, 0.07);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0b1113;
-    --surface: #121a1d;
-    --surface-2: #1a2427;
-    --ink: #edf2f1;
-    --ink-soft: #a9bab6;
-    --ink-faint: #71857f;
-    --accent: #e29a4e;
-    --accent-ink: #f7e2c4;
-    --accent-tint: #2b2013;
-    --border: rgba(237, 242, 241, 0.14);
-    --border-soft: rgba(237, 242, 241, 0.08);
-  }
-}
-
-:root[data-theme="dark"] {
-  --bg: #0b1113;
-  --surface: #121a1d;
-  --surface-2: #1a2427;
-  --ink: #edf2f1;
-  --ink-soft: #a9bab6;
-  --ink-faint: #71857f;
-  --accent: #e29a4e;
-  --accent-ink: #f7e2c4;
-  --accent-tint: #2b2013;
-  --border: rgba(237, 242, 241, 0.14);
-  --border-soft: rgba(237, 242, 241, 0.08);
+  --bg: #0b0f14;
+  --bg-alt: #0e131a;
+  --surface: #141a22;
+  --ink: #edeff2;
+  --ink-soft: #a7b0ba;
+  --ink-faint: #67717c;
+  --accent: #f2b134;
+  --accent-ink: #201603;
+  --accent-dim: rgba(242, 177, 52, 0.13);
+  --line: rgba(237, 239, 242, 0.12);
+  --line-soft: rgba(237, 239, 242, 0.06);
 }
 
 * {
@@ -59,7 +29,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -67,7 +37,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   text-wrap: balance;
   margin: 0;
 }
@@ -76,11 +46,34 @@ h3 {
   font-family: "JetBrains Mono", ui-monospace, monospace;
 }
 
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
 a {
   color: inherit;
 }
 
 ::selection {
-  background: var(--accent-tint);
-  color: var(--accent-ink);
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

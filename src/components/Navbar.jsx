@@ -1,35 +1,30 @@
 const LINKS = [
   { href: "#work", label: "Work" },
+  { href: "#services", label: "Services" },
   { href: "#skills", label: "Skills" },
-  { href: "#experience", label: "Experience" },
   { href: "#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-20 border-b border-[color:var(--border-soft)] bg-[color:var(--bg)]/85 backdrop-blur">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
-        <a href="#top" className="font-semibold" style={{ fontFamily: "Sora" }}>
-          Manish<span style={{ color: "var(--accent)" }}>.</span>
+    <header className="fixed top-0 z-30 w-full border-b" style={{ borderColor: "var(--line-soft)", background: "rgba(11,15,20,0.75)", backdropFilter: "blur(10px)" }}>
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <a href="#top" className="text-lg font-semibold" style={{ fontFamily: "Bricolage Grotesque" }}>
+          MMD<span style={{ color: "var(--accent)" }}>.</span>
         </a>
-        <nav className="hidden gap-7 text-sm sm:flex">
+        <nav className="mono hidden gap-8 text-xs tracking-wide uppercase sm:flex">
           {LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-[color:var(--ink-soft)] transition-colors hover:text-[color:var(--ink)]"
-            >
+            <a key={l.href} href={l.href} className="transition-colors" style={{ color: "var(--ink-soft)" }}>
               {l.label}
             </a>
           ))}
         </nav>
         <a
-          href="https://github.com/moneyyiiss"
-          target="_blank"
-          rel="noreferrer"
-          className="mono rounded-full border border-[color:var(--border)] px-4 py-1.5 text-xs text-[color:var(--ink-soft)] transition-colors hover:text-[color:var(--ink)]"
+          href="#contact"
+          className="mono rounded-full px-4 py-1.5 text-xs font-medium"
+          style={{ background: "var(--accent)", color: "var(--accent-ink)" }}
         >
-          @moneyyiiss
+          Hire me
         </a>
       </div>
     </header>

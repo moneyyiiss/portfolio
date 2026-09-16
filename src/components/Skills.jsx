@@ -1,24 +1,34 @@
+import Reveal from "./Reveal";
 import { skillGroups } from "../data/skills";
 
 export default function Skills() {
   return (
-    <section id="skills" className="border-t border-[color:var(--border-soft)] py-14">
-      <div className="mx-auto max-w-5xl px-5">
-        <h2 className="text-2xl font-semibold">Skills</h2>
-        <div className="mt-8 grid grid-cols-2 gap-8 sm:grid-cols-4">
-          {skillGroups.map((group) => (
-            <div key={group.label}>
-              <p className="mono text-xs tracking-[0.08em] uppercase" style={{ color: "var(--ink-faint)" }}>
+    <section id="skills" className="px-6 py-28">
+      <div className="mx-auto max-w-6xl">
+        <Reveal as="div">
+          <p className="mono text-xs tracking-[0.18em] uppercase" style={{ color: "var(--accent)" }}>
+            Toolbox
+          </p>
+          <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Skills</h2>
+        </Reveal>
+        <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-4">
+          {skillGroups.map((group, i) => (
+            <Reveal as="div" key={group.label} style={{ transitionDelay: `${i * 60}ms` }}>
+              <p className="mono text-xs tracking-[0.1em] uppercase" style={{ color: "var(--ink-faint)" }}>
                 {group.label}
               </p>
-              <ul className="mt-3 flex flex-col gap-2">
+              <div className="mt-4 flex flex-wrap gap-2">
                 {group.items.map((item) => (
-                  <li key={item} className="text-sm" style={{ color: "var(--ink-soft)" }}>
+                  <span
+                    key={item}
+                    className="rounded-md px-3 py-1.5 text-sm"
+                    style={{ background: "var(--surface)", border: "1px solid var(--line-soft)" }}
+                  >
                     {item}
-                  </li>
+                  </span>
                 ))}
-              </ul>
-            </div>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
