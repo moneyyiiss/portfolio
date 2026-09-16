@@ -1,6 +1,38 @@
 import Reveal from "./Reveal";
 import { projects } from "../data/projects";
 
+function TerminalCard({ name, snippet }) {
+  return (
+    <div
+      className="flex h-44 flex-col overflow-hidden rounded-2xl sm:h-56"
+      style={{ background: "#171a1c", border: "1px solid var(--line-soft)" }}
+    >
+      <div className="flex items-center gap-1.5 border-b px-4 py-3" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+        <span className="h-2.5 w-2.5 rounded-full" style={{ background: "rgba(255,255,255,0.18)" }} />
+        <span className="h-2.5 w-2.5 rounded-full" style={{ background: "rgba(255,255,255,0.18)" }} />
+        <span className="h-2.5 w-2.5 rounded-full" style={{ background: "rgba(255,255,255,0.18)" }} />
+        <span className="mono ml-3 text-[11px]" style={{ color: "rgba(255,255,255,0.4)" }}>
+          {name.toLowerCase().replace(/\s+/g, "-")}
+        </span>
+      </div>
+      <div className="mono flex flex-1 flex-col justify-center gap-2 px-5 text-[13px] sm:text-sm">
+        {snippet.map((line, i) =>
+          line.in ? (
+            <p key={i}>
+              <span style={{ color: "var(--accent)" }}>❯ </span>
+              <span style={{ color: "#e8e6e1" }}>{line.in}</span>
+            </p>
+          ) : (
+            <p key={i} style={{ color: "rgba(255,255,255,0.45)" }}>
+              {line.out}
+            </p>
+          )
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function Projects() {
   return (
     <section id="work" className="px-6 py-28" style={{ background: "var(--bg-alt)" }}>
@@ -33,19 +65,8 @@ export default function Projects() {
               className="grid grid-cols-1 items-center gap-8 border-t pt-12 sm:grid-cols-[0.9fr_1.1fr] sm:gap-14"
               style={{ borderColor: "var(--line-soft)" }}
             >
-              <div
-                className={`flex h-44 items-center justify-center rounded-2xl sm:h-56 ${i % 2 ? "sm:order-2" : ""}`}
-                style={{
-                  background: `linear-gradient(155deg, var(--accent-dim), transparent 70%), var(--surface)`,
-                  border: "1px solid var(--line-soft)",
-                }}
-              >
-                <span
-                  className="mono text-5xl font-medium sm:text-6xl"
-                  style={{ color: "var(--accent)", opacity: 0.85 }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+              <div className={i % 2 ? "sm:order-2" : ""}>
+                <TerminalCard name={p.name} snippet={p.snippet} />
               </div>
 
               <div>

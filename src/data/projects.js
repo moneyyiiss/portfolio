@@ -7,6 +7,10 @@ export const projects = [
     stack: ["Python", "Django", "Docker", "REST API"],
     repo: "https://github.com/moneyyiiss/apra-nova-backend-main",
     demo: null,
+    snippet: [
+      { in: "POST /api/v1/auth/login" },
+      { out: "200 · token issued" },
+    ],
   },
   {
     name: "Healthcare Platform",
@@ -16,6 +20,10 @@ export const projects = [
     stack: ["Java", "Spring Boot"],
     repo: "https://github.com/moneyyiiss/healthcareplatform",
     demo: "https://moneyyiiss.github.io/healthcareplatform/",
+    snippet: [
+      { in: "GET /doctors?symptom=fever&city=pune" },
+      { out: "3 matches · sorted by distance" },
+    ],
   },
   {
     name: "Customer CRUD & Sync",
@@ -25,6 +33,10 @@ export const projects = [
     stack: ["Java", "Spring Boot", "JavaScript", "HTML/CSS"],
     repo: "https://github.com/moneyyiiss/customercrud_assignment",
     demo: null,
+    snippet: [
+      { in: "PUT /customers/482" },
+      { out: "updated · synced with remote API" },
+    ],
   },
   {
     name: "Listenify",
@@ -34,6 +46,10 @@ export const projects = [
     stack: ["Java", "OOP"],
     repo: "https://github.com/moneyyiiss/Listenify_Application",
     demo: null,
+    snippet: [
+      { in: "> queue add \"Kesariya\"" },
+      { out: "added · now playing next" },
+    ],
   },
   {
     name: "AI News Analysis",
@@ -43,6 +59,10 @@ export const projects = [
     stack: ["Python", "NLP"],
     repo: "https://github.com/moneyyiiss/news_analysis_ai",
     demo: null,
+    snippet: [
+      { in: "$ python analyze.py --source rss" },
+      { out: "42 articles · 5 clusters found" },
+    ],
   },
   {
     name: "Image Encryption Tool",
@@ -52,5 +72,9 @@ export const projects = [
     stack: ["Java", "Security"],
     repo: "https://github.com/moneyyiiss/Image-Encryption-Decryption",
     demo: null,
+    snippet: [
+      { in: "$ encrypt --key **** photo.png" },
+      { out: "photo.png.enc written" },
+    ],
   },
 ];
