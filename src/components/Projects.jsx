@@ -11,7 +11,27 @@ function hostFromUrl(url) {
   }
 }
 
-function BrowserPreview({ project }) {
+function StatusBadge({ status }) {
+  if (status === "live") {
+    return (
+      <span className="mono flex items-center gap-1.5 text-[10.5px]" style={{ color: "var(--accent)" }}>
+        <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} />
+        Live
+      </span>
+    );
+  }
+  if (status === "staging") {
+    return (
+      <span className="mono flex items-center gap-1.5 text-[10.5px]" style={{ color: "var(--ink-faint)" }}>
+        <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--ink-faint)" }} />
+        Staging
+      </span>
+    );
+  }
+  return null;
+}
+
+function BrowserPreview({ project, maxHeight = 420 }) {
   return (
     <div style={{ background: "#171a1c" }}>
       <div className="flex items-center gap-1.5 border-b px-4 py-2.5" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
@@ -25,7 +45,8 @@ function BrowserPreview({ project }) {
       <img
         src={project.image}
         alt={`${project.name} screenshot`}
-        className="max-h-[420px] w-full object-cover object-top"
+        style={{ maxHeight }}
+        className="w-full object-cover object-top"
       />
     </div>
   );
@@ -67,12 +88,7 @@ function FeaturedProject({ project, onOpen }) {
             <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
               {project.tagline}
             </p>
-            {project.demo && (
-              <span className="mono flex items-center gap-1.5 text-[10.5px]" style={{ color: "var(--accent)" }}>
-                <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} />
-                Live
-              </span>
-            )}
+            <StatusBadge status={project.status} />
           </div>
           <h3 className="mt-2 text-2xl font-semibold sm:text-3xl">{project.name}</h3>
           <p className="mt-4 text-sm sm:text-base" style={{ color: "var(--ink-soft)" }}>
@@ -95,7 +111,7 @@ function FeaturedProject({ project, onOpen }) {
             </button>
             {project.demo && (
               <a href={project.demo} target="_blank" rel="noreferrer" className="underline">
-                Visit site
+                {project.status === "staging" ? "Preview" : "Visit site"}
               </a>
             )}
           </div>
@@ -119,7 +135,7 @@ export default function Projects() {
               Selected work
             </p>
             <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
-              {projects.length === 1 ? "1 client project" : `${projects.length} projects`}, out of 70+ repos
+              {projects.length} client project{projects.length === 1 ? "" : "s"}, out of 70+ repos
             </h2>
           </div>
           <a
@@ -138,43 +154,41 @@ export default function Projects() {
             <FeaturedProject project={projects[0]} onOpen={() => setActive(projects[0])} />
           </div>
         ) : (
-          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {projects.map((p, i) => (
               <Reveal key={p.name} style={{ transitionDelay: `${(i % 3) * 60}ms` }}>
                 <button
                   onClick={() => setActive(p)}
-                  className="flex h-full w-full flex-col items-start gap-3 rounded-xl p-6 text-left transition-transform hover:-translate-y-0.5"
+                  className="flex h-full w-full flex-col items-start overflow-hidden rounded-xl text-left transition-transform hover:-translate-y-0.5"
                   style={{ background: "var(--surface)", border: "1px solid var(--line-soft)" }}
                 >
-                  <div className="flex w-full items-center justify-between gap-2">
-                    <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
-                      {p.tagline}
+                  {p.image && <BrowserPreview project={p} maxHeight={160} />}
+                  <div className="flex w-full flex-1 flex-col items-start gap-3 p-6">
+                    <div className="flex w-full items-center justify-between gap-2">
+                      <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
+                        {p.tagline}
+                      </p>
+                      <StatusBadge status={p.status} />
+                    </div>
+                    <h3 className="text-lg font-semibold">{p.name}</h3>
+                    <p className="line-clamp-3 text-sm" style={{ color: "var(--ink-soft)" }}>
+                      {p.description}
                     </p>
-                    {p.demo && (
-                      <span className="mono flex items-center gap-1.5 text-[10.5px]" style={{ color: "var(--accent)" }}>
-                        <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} />
-                        Live
-                      </span>
-                    )}
+                    <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
+                      {p.stack.slice(0, 3).map((s) => (
+                        <span
+                          key={s}
+                          className="mono rounded-full px-2.5 py-1 text-[10.5px]"
+                          style={{ border: "1px solid var(--line)", color: "var(--ink-soft)" }}
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="mono mt-2 text-xs font-medium" style={{ color: "var(--accent)" }}>
+                      View details →
+                    </span>
                   </div>
-                  <h3 className="text-lg font-semibold">{p.name}</h3>
-                  <p className="line-clamp-3 text-sm" style={{ color: "var(--ink-soft)" }}>
-                    {p.description}
-                  </p>
-                  <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
-                    {p.stack.slice(0, 3).map((s) => (
-                      <span
-                        key={s}
-                        className="mono rounded-full px-2.5 py-1 text-[10.5px]"
-                        style={{ border: "1px solid var(--line)", color: "var(--ink-soft)" }}
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                  <span className="mono mt-2 text-xs font-medium" style={{ color: "var(--accent)" }}>
-                    View details →
-                  </span>
                 </button>
               </Reveal>
             ))}
