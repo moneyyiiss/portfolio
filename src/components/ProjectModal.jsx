@@ -8,6 +8,14 @@ function hostFromUrl(url) {
   }
 }
 
+function SectionLabel({ children }) {
+  return (
+    <p className="mono text-xs tracking-[0.1em] uppercase" style={{ color: "var(--ink-faint)" }}>
+      {children}
+    </p>
+  );
+}
+
 export default function ProjectModal({ project, onClose }) {
   const closeRef = useRef(null);
 
@@ -43,6 +51,11 @@ export default function ProjectModal({ project, onClose }) {
             <h3 id="project-modal-title" className="mt-1 text-2xl font-semibold">
               {project.name}
             </h3>
+            {project.role && (
+              <p className="mt-1 text-sm font-medium" style={{ color: "var(--accent)" }}>
+                {project.role}
+              </p>
+            )}
           </div>
           <button
             ref={closeRef}
@@ -69,7 +82,7 @@ export default function ProjectModal({ project, onClose }) {
               src={project.image}
               alt={`${project.name} screenshot`}
               style={{ height: 240, minHeight: 240 }}
-              className="w-full object-cover object-top"
+              className="w-full object-contain"
             />
           </div>
         ) : (
@@ -92,35 +105,48 @@ export default function ProjectModal({ project, onClose }) {
           </div>
         )}
 
-        <p className="mt-6 text-sm" style={{ color: "var(--ink-soft)" }}>
-          {project.description}
-        </p>
+        <div className="mt-6">
+          <SectionLabel>Overview</SectionLabel>
+          <div className="mt-2 flex flex-col gap-3">
+            {project.description.map((para, i) => (
+              <p key={i} className="text-sm" style={{ color: "var(--ink-soft)" }}>
+                {para}
+              </p>
+            ))}
+          </div>
+        </div>
 
         {project.languages && (
-          <p className="mono mt-3 text-xs" style={{ color: "var(--ink-faint)" }}>
+          <p className="mono mt-4 text-xs" style={{ color: "var(--ink-faint)" }}>
             Site language: {project.languages.join(", ")}
           </p>
         )}
 
-        <ul className="mt-5 flex flex-col gap-2">
-          {project.features.map((f) => (
-            <li key={f} className="flex gap-2 text-sm" style={{ color: "var(--ink-soft)" }}>
-              <span style={{ color: "var(--accent)" }}>—</span>
-              {f}
-            </li>
-          ))}
-        </ul>
+        <div className="mt-6">
+          <SectionLabel>Key features</SectionLabel>
+          <ul className="mt-2 flex flex-col gap-2">
+            {project.features.map((f) => (
+              <li key={f} className="flex gap-2 text-sm" style={{ color: "var(--ink-soft)" }}>
+                <span style={{ color: "var(--accent)" }}>—</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <div className="mt-6 flex flex-wrap gap-2">
-          {project.stack.map((s) => (
-            <span
-              key={s}
-              className="mono rounded-full px-3 py-1 text-[11px]"
-              style={{ border: "1px solid var(--line)", color: "var(--ink-soft)" }}
-            >
-              {s}
-            </span>
-          ))}
+        <div className="mt-6">
+          <SectionLabel>Skills &amp; technologies</SectionLabel>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {project.stack.map((s) => (
+              <span
+                key={s}
+                className="mono rounded-full px-3 py-1 text-[11px]"
+                style={{ border: "1px solid var(--line)", color: "var(--ink-soft)" }}
+              >
+                {s}
+              </span>
+            ))}
+          </div>
         </div>
 
         <div className="mt-7 flex gap-5 border-t pt-6 text-sm font-medium" style={{ borderColor: "var(--line-soft)" }}>

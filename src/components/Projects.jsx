@@ -26,7 +26,7 @@ function BrowserPreview({ project, height = 420 }) {
         src={project.image}
         alt={`${project.name} screenshot`}
         style={{ height, minHeight: height }}
-        className="w-full object-cover object-top"
+        className="w-full object-contain"
       />
     </div>
   );
@@ -69,7 +69,7 @@ function FeaturedProject({ project, onOpen }) {
           </p>
           <h3 className="mt-2 text-2xl font-semibold sm:text-3xl">{project.name}</h3>
           <p className="mt-4 text-sm sm:text-base" style={{ color: "var(--ink-soft)" }}>
-            {project.description}
+            {project.description[0]}
           </p>
           {project.languages && (
             <p className="mono mt-3 text-xs" style={{ color: "var(--ink-faint)" }}>
@@ -151,7 +151,7 @@ export default function Projects() {
                     </p>
                     <h3 className="text-lg font-semibold">{p.name}</h3>
                     <p className="line-clamp-3 text-sm" style={{ color: "var(--ink-soft)" }}>
-                      {p.description}
+                      {p.description[0]}
                     </p>
                     {p.languages && (
                       <p className="mono text-[10.5px]" style={{ color: "var(--ink-faint)" }}>
