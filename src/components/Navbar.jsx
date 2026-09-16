@@ -7,7 +7,7 @@ const LINKS = [
 
 export default function Navbar() {
   return (
-    <header className="fixed top-0 z-30 w-full border-b" style={{ borderColor: "var(--line-soft)", background: "rgba(11,15,20,0.75)", backdropFilter: "blur(10px)" }}>
+    <header className="fixed top-0 z-30 w-full border-b" style={{ borderColor: "var(--line-soft)", background: "rgba(245,244,239,0.8)", backdropFilter: "blur(10px)" }}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a href="#top" className="text-lg font-semibold" style={{ fontFamily: "Bricolage Grotesque" }}>
           MMD<span style={{ color: "var(--accent)" }}>.</span>
