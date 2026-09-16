@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { projects } from "../data/projects";
 import { ICONS } from "./icons";
 
@@ -66,8 +67,8 @@ export default function ServiceModal({ service, onClose }) {
         </ul>
 
         {exampleProject && (
-          <a
-            href="#work"
+          <Link
+            to="/#work"
             onClick={onClose}
             className="mt-7 flex w-full items-center justify-between rounded-xl px-5 py-4 text-left"
             style={{ background: "var(--bg-alt)", border: "1px solid var(--line-soft)" }}
@@ -81,13 +82,13 @@ export default function ServiceModal({ service, onClose }) {
             <span className="mono text-xs" style={{ color: "var(--accent)" }}>
               See in Work →
             </span>
-          </a>
+          </Link>
         )}
 
         <div className="mt-7 border-t pt-6 text-sm" style={{ borderColor: "var(--line-soft)" }}>
-          <a href="#contact" onClick={onClose} className="font-medium underline">
+          <Link to="/#contact" onClick={onClose} className="font-medium underline">
             Ask about this →
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -8,19 +8,9 @@ export default function Services() {
   const [active, setActive] = useState(null);
 
   return (
-    <section id="services" className="px-6 py-28">
+    <section id="services" className="px-6 pt-4 pb-28">
       <div className="mx-auto max-w-6xl">
-        <Reveal as="div" className="max-w-[46ch]">
-          <p className="mono text-xs tracking-[0.18em] uppercase" style={{ color: "var(--accent)" }}>
-            What I offer
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Services</h2>
-          <p className="mt-4 text-sm" style={{ color: "var(--ink-soft)" }}>
-            Scoped backend engagements — pick what your project actually
-            needs, not a bundled package. Click one for what's included.
-          </p>
-        </Reveal>
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {services.map((s, i) => {
             const Icon = ICONS[s.icon];
             return (
