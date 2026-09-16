@@ -1,3 +1,5 @@
+import deinVideofonImg from "../assets/projects/dein-videofon.png";
+
 export const projects = [
   {
     name: "Dein Videofon",
@@ -12,6 +14,7 @@ export const projects = [
     stack: ["WordPress", "WooCommerce", "Performance", "PHP"],
     repo: null,
     demo: "https://dein-videofon.de/",
+    image: deinVideofonImg,
     snippet: [
       { in: "$ optimize dein-videofon.de --wordpress" },
       { out: "assets minified · queries cached · TTFB reduced" },

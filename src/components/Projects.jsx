@@ -3,6 +3,34 @@ import Reveal from "./Reveal";
 import ProjectModal from "./ProjectModal";
 import { projects } from "../data/projects";
 
+function hostFromUrl(url) {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return url;
+  }
+}
+
+function BrowserPreview({ project }) {
+  return (
+    <div style={{ background: "#171a1c" }}>
+      <div className="flex items-center gap-1.5 border-b px-4 py-2.5" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+        <span className="h-2.5 w-2.5 rounded-full" style={{ background: "rgba(255,255,255,0.18)" }} />
+        <span className="h-2.5 w-2.5 rounded-full" style={{ background: "rgba(255,255,255,0.18)" }} />
+        <span className="h-2.5 w-2.5 rounded-full" style={{ background: "rgba(255,255,255,0.18)" }} />
+        <span className="mono ml-3 text-[11px]" style={{ color: "rgba(255,255,255,0.4)" }}>
+          {project.demo ? hostFromUrl(project.demo) : project.name}
+        </span>
+      </div>
+      <img
+        src={project.image}
+        alt={`${project.name} screenshot`}
+        className="max-h-[420px] w-full object-cover object-top"
+      />
+    </div>
+  );
+}
+
 function TerminalPreview({ snippet }) {
   return (
     <div
@@ -29,48 +57,51 @@ function FeaturedProject({ project, onOpen }) {
   return (
     <Reveal
       as="article"
-      className="grid grid-cols-1 gap-8 rounded-2xl p-8 sm:grid-cols-[1.1fr_0.9fr] sm:gap-12 sm:p-12"
+      className="overflow-hidden rounded-2xl"
       style={{ background: "var(--surface)", border: "1px solid var(--line-soft)" }}
     >
-      <div>
-        <div className="flex items-center gap-2">
-          <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
-            {project.tagline}
+      {project.image && <BrowserPreview project={project} />}
+      <div className="grid grid-cols-1 gap-8 p-8 sm:grid-cols-[1.1fr_0.9fr] sm:gap-12 sm:p-12">
+        <div>
+          <div className="flex items-center gap-2">
+            <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
+              {project.tagline}
+            </p>
+            {project.demo && (
+              <span className="mono flex items-center gap-1.5 text-[10.5px]" style={{ color: "var(--accent)" }}>
+                <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} />
+                Live
+              </span>
+            )}
+          </div>
+          <h3 className="mt-2 text-2xl font-semibold sm:text-3xl">{project.name}</h3>
+          <p className="mt-4 text-sm sm:text-base" style={{ color: "var(--ink-soft)" }}>
+            {project.description}
           </p>
-          {project.demo && (
-            <span className="mono flex items-center gap-1.5 text-[10.5px]" style={{ color: "var(--accent)" }}>
-              <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} />
-              Live
-            </span>
-          )}
+          <div className="mt-5 flex flex-wrap gap-2">
+            {project.stack.map((s) => (
+              <span
+                key={s}
+                className="mono rounded-full px-3 py-1 text-[11px]"
+                style={{ border: "1px solid var(--line)", color: "var(--ink-soft)" }}
+              >
+                {s}
+              </span>
+            ))}
+          </div>
+          <div className="mt-6 flex gap-5 text-sm font-medium">
+            <button onClick={onOpen} className="underline" style={{ color: "var(--accent)" }}>
+              View full details →
+            </button>
+            {project.demo && (
+              <a href={project.demo} target="_blank" rel="noreferrer" className="underline">
+                Visit site
+              </a>
+            )}
+          </div>
         </div>
-        <h3 className="mt-2 text-2xl font-semibold sm:text-3xl">{project.name}</h3>
-        <p className="mt-4 text-sm sm:text-base" style={{ color: "var(--ink-soft)" }}>
-          {project.description}
-        </p>
-        <div className="mt-5 flex flex-wrap gap-2">
-          {project.stack.map((s) => (
-            <span
-              key={s}
-              className="mono rounded-full px-3 py-1 text-[11px]"
-              style={{ border: "1px solid var(--line)", color: "var(--ink-soft)" }}
-            >
-              {s}
-            </span>
-          ))}
-        </div>
-        <div className="mt-6 flex gap-5 text-sm font-medium">
-          <button onClick={onOpen} className="underline" style={{ color: "var(--accent)" }}>
-            View full details →
-          </button>
-          {project.demo && (
-            <a href={project.demo} target="_blank" rel="noreferrer" className="underline">
-              Visit site
-            </a>
-          )}
-        </div>
+        {!project.image && <TerminalPreview snippet={project.snippet} />}
       </div>
-      <TerminalPreview snippet={project.snippet} />
     </Reveal>
   );
 }

@@ -1,5 +1,13 @@
 import { useEffect, useRef } from "react";
 
+function hostFromUrl(url) {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return url;
+  }
+}
+
 export default function ProjectModal({ project, onClose }) {
   const closeRef = useRef(null);
 
@@ -55,23 +63,37 @@ export default function ProjectModal({ project, onClose }) {
           </button>
         </div>
 
-        <div
-          className="mono mt-6 flex flex-col gap-2 rounded-xl px-5 py-4 text-[13px]"
-          style={{ background: "#171a1c" }}
-        >
-          {project.snippet.map((line, i) =>
-            line.in ? (
-              <p key={i}>
-                <span style={{ color: "var(--accent)" }}>❯ </span>
-                <span style={{ color: "#e8e6e1" }}>{line.in}</span>
-              </p>
-            ) : (
-              <p key={i} style={{ color: "rgba(255,255,255,0.45)" }}>
-                {line.out}
-              </p>
-            )
-          )}
-        </div>
+        {project.image ? (
+          <div className="mt-6 overflow-hidden rounded-xl" style={{ background: "#171a1c" }}>
+            <div className="flex items-center gap-1.5 border-b px-4 py-2.5" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+              <span className="h-2.5 w-2.5 rounded-full" style={{ background: "rgba(255,255,255,0.18)" }} />
+              <span className="h-2.5 w-2.5 rounded-full" style={{ background: "rgba(255,255,255,0.18)" }} />
+              <span className="h-2.5 w-2.5 rounded-full" style={{ background: "rgba(255,255,255,0.18)" }} />
+              <span className="mono ml-3 text-[11px]" style={{ color: "rgba(255,255,255,0.4)" }}>
+                {project.demo ? hostFromUrl(project.demo) : project.name}
+              </span>
+            </div>
+            <img src={project.image} alt={`${project.name} screenshot`} className="max-h-[280px] w-full object-cover object-top" />
+          </div>
+        ) : (
+          <div
+            className="mono mt-6 flex flex-col gap-2 rounded-xl px-5 py-4 text-[13px]"
+            style={{ background: "#171a1c" }}
+          >
+            {project.snippet.map((line, i) =>
+              line.in ? (
+                <p key={i}>
+                  <span style={{ color: "var(--accent)" }}>❯ </span>
+                  <span style={{ color: "#e8e6e1" }}>{line.in}</span>
+                </p>
+              ) : (
+                <p key={i} style={{ color: "rgba(255,255,255,0.45)" }}>
+                  {line.out}
+                </p>
+              )
+            )}
+          </div>
+        )}
 
         <p className="mt-6 text-sm" style={{ color: "var(--ink-soft)" }}>
           {project.description}
