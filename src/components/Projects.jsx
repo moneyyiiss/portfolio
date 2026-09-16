@@ -37,9 +37,17 @@ export default function Projects() {
                 className="flex h-full w-full flex-col items-start gap-3 rounded-xl p-6 text-left transition-transform hover:-translate-y-0.5"
                 style={{ background: "var(--surface)", border: "1px solid var(--line-soft)" }}
               >
-                <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
-                  {p.tagline}
-                </p>
+                <div className="flex w-full items-center justify-between gap-2">
+                  <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
+                    {p.tagline}
+                  </p>
+                  {p.demo && (
+                    <span className="mono flex items-center gap-1.5 text-[10.5px]" style={{ color: "var(--accent)" }}>
+                      <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} />
+                      Live
+                    </span>
+                  )}
+                </div>
                 <h3 className="text-lg font-semibold">{p.name}</h3>
                 <p className="line-clamp-3 text-sm" style={{ color: "var(--ink-soft)" }}>
                   {p.description}

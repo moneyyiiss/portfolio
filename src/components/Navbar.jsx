@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 
 const LINKS = [
-  { href: "/#work", label: "Work" },
+  { href: "/work", label: "My Work" },
   { href: "/services", label: "Services" },
   { href: "/#skills", label: "Skills" },
   { href: "/#contact", label: "Contact" },
@@ -16,19 +16,18 @@ export default function Navbar() {
         </Link>
         <nav className="mono hidden gap-8 text-xs tracking-wide uppercase sm:flex">
           {LINKS.map((l) =>
-            l.href === "/services" ? (
+            l.href.startsWith("/#") ? (
+              <Link key={l.href} to={l.href} className="transition-colors" style={{ color: "var(--ink-soft)" }}>
+                {l.label}
+              </Link>
+            ) : (
               <NavLink
                 key={l.href}
                 to={l.href}
-                className={({ isActive }) => "transition-colors"}
                 style={({ isActive }) => ({ color: isActive ? "var(--accent)" : "var(--ink-soft)" })}
               >
                 {l.label}
               </NavLink>
-            ) : (
-              <Link key={l.href} to={l.href} className="transition-colors" style={{ color: "var(--ink-soft)" }}>
-                {l.label}
-              </Link>
             )
           )}
         </nav>

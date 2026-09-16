@@ -68,7 +68,7 @@ export default function ServiceModal({ service, onClose }) {
 
         {exampleProject && (
           <Link
-            to="/#work"
+            to="/work"
             onClick={onClose}
             className="mt-7 flex w-full items-center justify-between rounded-xl px-5 py-4 text-left"
             style={{ background: "var(--bg-alt)", border: "1px solid var(--line-soft)" }}

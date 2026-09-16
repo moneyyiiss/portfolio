@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden px-6 pt-40 pb-28">
@@ -22,13 +24,13 @@ export default function Hero() {
           by trade, Python &amp; Django when the project calls for it.
         </p>
         <div className="mt-10 flex flex-wrap gap-4">
-          <a
-            href="#work"
+          <Link
+            to="/work"
             className="rounded-full px-6 py-3 text-sm font-semibold"
             style={{ background: "var(--accent)", color: "var(--accent-ink)" }}
           >
-            View selected work
-          </a>
+            View my work
+          </Link>
           <a
             href="https://github.com/moneyyiiss"
             target="_blank"

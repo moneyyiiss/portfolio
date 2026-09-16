@@ -29,9 +29,17 @@ export default function ProjectModal({ project, onClose }) {
       >
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
-              {project.tagline}
-            </p>
+            <div className="flex items-center gap-2">
+              <p className="mono text-xs" style={{ color: "var(--ink-faint)" }}>
+                {project.tagline}
+              </p>
+              {project.demo && (
+                <span className="mono flex items-center gap-1.5 text-[10.5px]" style={{ color: "var(--accent)" }}>
+                  <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} />
+                  Live
+                </span>
+              )}
+            </div>
             <h3 id="project-modal-title" className="mt-1 text-2xl font-semibold">
               {project.name}
             </h3>
